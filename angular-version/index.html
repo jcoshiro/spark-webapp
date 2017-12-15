@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="sparkadd">
+  <head>
+    <meta charset="utf-8">
+    <title>Add to Spark Room</title>
+    <link rel="stylesheet" href="css/index.css">
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <!-- Google Material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- JQuery libs -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/index.js"></script>
+  </head>
+  <body ng-controller="sparkController">
+    <header>
+      <h1>Add multiple users to a Spark room</h1>
+    </header>
+    <div class="inputs" ng-model-options="modelOptions">
+        <table class="input-table">
+          <tr>
+            <!-- Token input -->
+            <td class="input-col1"><span class="input-label">Token:</span></td>
+            <form name="tokenForm">
+              <td class="input-col2">
+                <input type="text" name="token" ng-model="token" class="input-field" ng-change="checkToken()" ng-class="{'valid-input' : validToken}" required>
+              </td>
+            </form>
+            <td class="input-col3">
+              <div class="user">
+                <span>You're:</span>
+              </div>
+            </td>
+          </tr>
+          <tr ng-show="token.length">
+            <!-- Room name input -->
+            <td class="input-col1"><span class="input-label">Room name:</span></td>
+            <form name="roomForm">
+              <td class="input-col2"><input type="text" name="roomName" ng-model="roomName" ng-change="checkRoom(roomName)" ng-class="{'valid-input' : validRoom}" class="input-field" required></td>
+            </form>
+            <td class="input-col3">
+              <div class="user">
+                <span class="username">{{ username }}</span>
+              </div>
+            </td>
+          </tr>
+        </table><tr class="last-added data-row pending"><td>
+        <!-- File Input -->
+        <input id="upload-input" type="file" name="file" onchange="angular.element(this).scope().readFile(this)"/>
+    </div>
+    <div class="container">
+      <div class="review-container">
+        <p class="status">Total: {{ (data | filter:{'status': 'pending'}).length }} pending users, 0 users completed, 0 errors.</p>
+        <table class="review-table">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+          </tr>
+          <tr class="last-added data-row pending" ng-repeat="user in data" ng-dblclick="delete()">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td></td>
+          </tr>
+          <tr id="new-row">
+            <form name="newForm">
+              <td><input type="text" name="newName" ng-model="newName"></td>
+              <td><input type="email" name="newEmail" ng-model="newEmail"></td>
+              <td><i id="add-new" class="material-icons" ng-click="add(newName, newEmail)">add_box</i></td>
+            </form>
+          </tr>
+        </table>
+      </div>
+      <div class="actions">
+        <!-- Clear table button -->
+        <div class="action-button fix-bottom" id="clear-table" ng-show="data.length" ng-click="clear()">
+          <span class="action-button-txt">Clear All</span>
+        </div>
+        <!-- Upload file button -->
+        <div class="action-button fix-bottom" id="upload-file" ng-click="upload()">
+          <span class="action-button-txt">Upload file</span>
+        </div>
+        <!-- Execute action button -->
+        <div class="action-button fix-bottom" id="run-button" ng-show="validToken && validRoom">
+          <span class="action-button-txt">Add people</span>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <span class="help-icon"><i class="material-icons">help</i></span>
+      <span class="footer-text">v0.2 - Bolivia</span>
+    </footer>
+  </body>
+</html>

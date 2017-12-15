@@ -1,0 +1,239 @@
+* {
+  box-sizing: border-box;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+html, body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  margin: 0;
+  padding: 5px;
+  width: 100%;
+  height: 50px;
+  z-index: 1000;
+  background-color: grey;
+  box-shadow: 2px 2px 2px grey;
+}
+
+header h1 {
+  font-style: normal;
+  font-size: 1em;
+  color: white;
+  text-shadow: -1px -1px black;
+}
+
+.container {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  flex: 1;
+}
+
+.inputs {
+  position: relative;
+  margin: 50px 0 0 0;
+  padding: 10px;
+  width: 100%;
+}
+
+.input-table {
+  position: relative;
+  margin: 1px;
+  width: 100%;
+  height: 100%;
+}
+
+.input-col1 {
+  position: relative;
+  width: 100px;
+}
+
+.input-col3 {
+  position: relative;
+  width: 100px;
+}
+
+.input-field {
+  position: relative;
+  margin: 1px;
+  padding: 1px;
+  width: 90%;
+}
+
+.username {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.valid-input {
+  border: 2px solid lightgreen;
+}
+
+#upload-input {
+  visibility: hidden;
+}
+
+.review-container {
+  position: relative;
+  padding: 5px 15px 40px 5px;
+  height: 100%;
+  width: 90%;
+  float: left;
+}
+
+.status {
+  font-style: italic;
+  font-size: 0.8em;
+  margin: 0;
+  padding: 2px;
+}
+
+.review-table {
+  position: relative;
+  margin: 0;
+  padding: 5px;
+  width: 100%;
+  border: 3px solid grey;
+  border-collapse: collapse;
+  box-shadow: 2px 2px 2px grey;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.review-table tr {
+  height: 50px;
+}
+
+.review-table tr:first-child {
+  border-bottom: 1px solid grey;
+}
+
+.review-table tr:nth-child(even) {
+  background-color: #eee;
+}
+
+.review-table th {
+  text-align: left;
+  font-weight: bold;
+}
+
+#new-row {
+  height: 30px;
+  background-color: #eee;
+  border-top: 1px solid grey;
+}
+
+.ng-invalid {
+  border: 2px solid red;
+}
+
+.ng-untouched {
+  border: 1px solid lightgrey;
+}
+
+#add-new {
+  width: 24px;
+  cursor: pointer;
+  display: block;
+  color: grey;
+}
+
+#add-new:hover {
+  color: black;
+}
+
+.actions {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 10px 10px 45px 10px;
+  float: left;
+  width: 10%;
+}
+
+.action-button {
+  position: relative;
+  margin: 10px auto;
+  padding-top: 10px;
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  background-color: grey;
+  color: white;
+  text-shadow: -1px -1px black;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.action-button:hover {
+  background-color: black;
+}
+
+#clear-table {
+  background-color: #cc0000;
+}
+
+#clear-table:hover {
+  background-color: #800000;
+}
+
+#run-button {
+  background-color: #009900;
+}
+
+#run-button:hover {
+  background-color: #00cc00;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  margin: 0;
+  padding:3px;
+  width: 100%;
+  height: 35px;
+  z-index: 1000;
+  background-color: grey;
+  box-shadow: -2px -2px 2px grey;
+  color: white;
+  text-shadow: -1px -1px black;
+}
+
+.help-icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-top: 5px;
+  padding-left: 10px;
+  height: 35px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.footer-text {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-top: 9px;
+  padding-right: 10px;
+  height: 35px;
+  font-style: italic;
+  font-size: 0.8em;
+}
