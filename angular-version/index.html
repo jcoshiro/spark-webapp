@@ -32,7 +32,7 @@
               </div>
             </td>
           </tr>
-          <tr ng-show="token.length">
+          <tr ng-show="validToken">
             <!-- Room name input -->
             <td class="input-col1"><span class="input-label">Room name:</span></td>
             <form name="roomForm">
@@ -50,16 +50,18 @@
     </div>
     <div class="container">
       <div class="review-container">
-        <p class="status">Total: {{ (data | filter:{'status': 'pending'}).length }} pending users, 0 users completed, 0 errors.</p>
+        <p class="status">Total: {{ (data | filter:{'status': 'pending'}).length }} pending users, {{ (data | filter:{'status': 'completed'}).length }} users completed, {{ (data | filter:{'status': 'error'}).length }} errors.</p>
         <table class="review-table">
           <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Status</th>
           </tr>
-          <tr class="last-added data-row pending" ng-repeat="user in data" ng-dblclick="delete()">
+          <tr class="last-added data-row pending" ng-repeat="user in data" ng-dblclick="delete()" ng-switch="user.status">
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
+            <td ng-switch-when="completed"><i class="material-icons">check_circle</i></td>
+            <td ng-switch-when="error"><i class="material-icons">error</i></td>
             <td></td>
           </tr>
           <tr id="new-row">
@@ -81,7 +83,7 @@
           <span class="action-button-txt">Upload file</span>
         </div>
         <!-- Execute action button -->
-        <div class="action-button fix-bottom" id="run-button" ng-show="validToken && validRoom">
+        <div class="action-button fix-bottom" id="run-button" ng-show="validToken && validRoom" ng-click="run(token, roomId)">
           <span class="action-button-txt">Add people</span>
         </div>
       </div>

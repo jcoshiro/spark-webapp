@@ -40,11 +40,12 @@
     };
 
     //Check room:
-
     $scope.checkRoom = function(room) {
+      console.log('HERE');
       var filtered = $scope.roomList.filter(function(item) {
         return item.title == room;
       });
+      console.log(filtered);
       if (filtered.length == 1) {
         $scope.validRoom = true;
         $scope.roomId = filtered[0].id;
@@ -105,6 +106,37 @@
       };
       reader.readAsText(csvFile[0]);
     };
+
+    //Finally, add the people:
+    $scope.run = function(token, room) {
+      //First, filter all pending or error users:
+      var users = $scope.data.filter(function(item) {
+        return item.status != 'completed';
+      });
+      console.log(users);
+      for (let user of users) {
+        //Add each user to the room
+        var userIndex = $scope.data.indexOf(user);
+        console.log(user.email);
+        $http({
+          method: 'POST',
+          url: 'https://api.ciscospark.com/v1/memberships',
+          headers: {
+            'Authorization': 'Bearer ' + $scope.token,
+          },
+          data: {
+            'roomId': room,
+            'personEmail': user.email,
+            'isModerator': false,
+          }
+        }).then(function(response) {
+          $scope.data[userIndex].status = 'completed'
+        },
+        function(response) {
+          $scope.data[userIndex].status = 'error'
+        });
+      };
+    }
 
     $scope.username = '';
     $scope.roomId = '';
